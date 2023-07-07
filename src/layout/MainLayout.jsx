@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import NavigationBar from "../pages/Shared/NavigationBar";
 
 const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between ">
       <div>
-        <nav>Navigation Bar</nav>
+        <NavigationBar></NavigationBar>
         <Outlet></Outlet>
       </div>
       <footer>Footer</footer>
