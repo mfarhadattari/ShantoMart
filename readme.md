@@ -11,3 +11,4 @@
 * React Icon
 * Swiper JS
 * React Text Modifier
+* React Query
