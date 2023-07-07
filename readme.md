@@ -12,3 +12,4 @@
 * Swiper JS
 * React Text Modifier
 * React Query
+* React Rating

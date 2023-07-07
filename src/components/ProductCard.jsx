@@ -15,14 +15,19 @@ const ProductCard = ({ productInfo }) => {
         <div className="card-body text-center pb-2">
           <h2 className="card-title w-fit mx-auto">{productInfo?.name}</h2>
           <p className="text-2xl flex gap-3 justify-center">
-            <span className="line-through text-red-500">
+            <span
+              className={productInfo?.discount && "line-through text-red-500"}
+            >
               {productInfo?.price}&#2547;
             </span>
-            <span className="text-blue-700">
-              {productInfo?.price -
-                (productInfo?.price * productInfo?.discount) / 100}
-              &#2547;
-            </span>
+            {productInfo?.discount && (
+              <span className="text-blue-700">
+                {productInfo?.discount &&
+                  productInfo?.price -
+                    (productInfo?.price * productInfo?.discount) / 100}
+                &#2547;
+              </span>
+            )}
           </p>
         </div>
       </Link>
