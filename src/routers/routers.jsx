@@ -5,6 +5,8 @@ import ProductsPage from "../pages/Products/ProductsPage";
 import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
 import LoginPage from "../pages/Account/LoginPage";
 import PrivateRouter from "./PrivateRouter";
+import RegisterPage from "../pages/Account/RegisterPage";
+import RegisterSetupPage from "../pages/Account/RegisterSetupPage";
 
 const routers = createBrowserRouter([
   {
@@ -29,7 +31,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <>Register Page</>,
+        element: <RegisterPage />,
+      },
+      {
+        path: "/register/set-up",
+        element: <RegisterSetupPage />,
       },
       {
         path: "/carts",

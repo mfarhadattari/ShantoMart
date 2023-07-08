@@ -3,20 +3,18 @@ import firebase from "firebase/compat/app";
 import * as firebaseui from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
 import firebaseConfig from "../../firebase/firebase.config";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 firebase.initializeApp(firebaseConfig);
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const auth = firebase.auth();
-  const location = useLocation();
-  const redirect = location?.state?.from || "/";
 
   useEffect(() => {
     const ui =
       firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
     ui.start(".phone-auth-container", {
-      signInSuccessUrl: redirect,
+      signInSuccessUrl: "/register/set-up",
       signInOptions: [
         {
           provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
@@ -24,15 +22,15 @@ const LoginPage = () => {
         },
       ],
     });
-  }, [auth, redirect]);
+  }, [auth]);
   return (
     <main>
       <section className="my-10">
         <div className="phone-auth-container"></div>
         <p className="text-center my-5">
-          New to ShantoMart?
-          <Link to="/register" className="link link-hover ms-1">
-            Register now
+          Already an account?
+          <Link to="/login" className="link link-hover ms-1">
+            Login now
           </Link>
         </p>
       </section>
@@ -40,4 +38,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

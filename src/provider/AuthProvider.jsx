@@ -1,4 +1,9 @@
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../firebase/firebase.config";
 
@@ -13,6 +18,13 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const setupProfile = (displayName, photoURL) => {
+    return updateProfile(auth.currentUser, {
+      displayName: displayName,
+      photoURL: photoURL,
+    });
+  };
+
   useEffect(() => {
     setAuthLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -22,7 +34,8 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
-  const authInfo = { authUser, authLoading, logout };
+
+  const authInfo = { authUser, authLoading, logout, setupProfile };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

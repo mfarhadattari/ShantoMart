@@ -25,12 +25,9 @@ const navOptions = [
 
 const NavigationBar = () => {
   const { authUser, logout } = useAuth();
-  console.log(authUser);
-
   const handelLogOut = () => {
     logout();
   };
-
   return (
     <nav className="navbar p-5 md:px-20 bg-white items-center sticky top-0 z-50 ">
       <div className="navbar-start">
@@ -81,10 +78,14 @@ const NavigationBar = () => {
         {authUser && (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full avatar">
-                <span className="text-4xl flex justify-center items-center w-full h-full">
-                  <FaUserCircle></FaUserCircle>
-                </span>
+              <div className="w-10 rounded-full">
+                {authUser?.photoURL ? (
+                  <img src={authUser?.photoURL} />
+                ) : (
+                  <span className="text-4xl flex justify-center items-center w-full h-full">
+                    <FaUserCircle></FaUserCircle>
+                  </span>
+                )}
               </div>
             </label>
             <ul

@@ -13,3 +13,6 @@
 * React Text Modifier
 * React Query
 * React Rating
+* Firebase
+* Firebase UI
+* React Hot Toast
