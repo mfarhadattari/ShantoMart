@@ -43,7 +43,7 @@ const AddProduct = () => {
       .then((imgResponse) => {
         if (imgResponse.success) {
           const imageURL = imgResponse.data.display_url;
-          const timeDate = moment().format("YYYY-MM-DD:hh-mm-ss")
+          const timeDate = moment().format("YYYY-MM-DD:HH-mm-ss")
           const {
             name,
             category,

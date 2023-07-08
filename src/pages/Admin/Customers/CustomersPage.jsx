@@ -3,7 +3,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loaders from "../../../components/Loaders";
 import { FaEye } from "react-icons/fa";
 
-const Customers = () => {
+const CustomersPage = () => {
   const { axiosPublic } = useAxiosPublic();
   const { data: customers = [], isLoading } = useQuery({
     queryKey: ["customers", axiosPublic],
@@ -64,4 +64,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default CustomersPage;

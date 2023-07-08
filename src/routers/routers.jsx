@@ -12,8 +12,9 @@ import DashboardLayout from "../layout/DashboardLayout";
 import AllProducts from "../pages/Admin/Products/AllProducts";
 import AddProduct from "../pages/Admin/Products/AddProduct";
 import UpdateProduct from "../pages/Admin/Products/UpdateProduct";
-import Customers from "../pages/Admin/Customers/Customers";
-import Orders from "../pages/Admin/Orders/Orders";
+import CustomersPage from "../pages/Admin/Customers/CustomersPage";
+import OrdersPage from "../pages/Admin/Orders/OrdersPage";
+import OrdersDetails from "../pages/Admin/Orders/OrdersDetails";
 
 const routers = createBrowserRouter([
   {
@@ -72,7 +73,7 @@ const routers = createBrowserRouter([
       },
       {
         path: "customers",
-        element: <Customers />,
+        element: <CustomersPage />,
       },
       {
         path: "customers/:id",
@@ -80,11 +81,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "orders",
-        element: <Orders />,
+        element: <OrdersPage />,
       },
       {
         path: "orders/:id",
-        element: <>Order Details Page</>,
+        element: <OrdersDetails />,
       },
       {
         path: "products",

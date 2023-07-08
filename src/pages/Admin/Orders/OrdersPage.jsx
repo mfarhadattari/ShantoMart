@@ -2,16 +2,35 @@ import { useQuery } from "react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loaders from "../../../components/Loaders";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
-const Orders = () => {
+const OrdersPage = () => {
   const { axiosPublic } = useAxiosPublic();
-  const { data: orders = [], isLoading } = useQuery({
+  const {
+    data: orders = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["orders", axiosPublic],
     queryFn: async () => {
       const res = await axiosPublic.get("admin/orders");
       return await res.data;
     },
   });
+
+  const handelApprove = (id) => {
+    axiosPublic
+      .patch(`admin/update-status/${id}`, {
+        status: "approve",
+      })
+      .then(({ data }) => {
+        if (data.modifiedCount > 0) {
+          toast("Approve Successfully!");
+          refetch();
+        }
+      });
+  };
+
   return (
     <main>
       <section className="my-10  mx-auto">
@@ -36,9 +55,10 @@ const Orders = () => {
                   <tr key={order._id} className="hover:shadow-xl">
                     <th>{idx + 1}</th>
                     <td>
-                      <div>
-                        <h1 className="font-medium">{order.userName}</h1>
+                      <div className="font-medium text-base w-fit">
+                        <h1>{order.userName}</h1>
                         <p>{order.userPhone}</p>
+                        <p>{order.city}</p>
                       </div>
                     </td>
                     <td>
@@ -71,20 +91,19 @@ const Orders = () => {
                           {order.status}
                         </p>
                         {order.status == "pending" && (
-                          <button className="btn btn-sm rounded-none btn-success w-full text-white">
+                          <button
+                            className="btn btn-sm rounded-none btn-success w-full text-white"
+                            onClick={() => handelApprove(order._id)}
+                          >
                             Approve
                           </button>
                         )}
-                        {order.status == "approve" && (
-                          <button className="btn btn-sm rounded-none btn-success w-full text-white">
-                            Delivered
-                          </button>
-                        )}
-                        {order.status == "cancel" && (
+                        {/* TODO: Implement Canceling and deleting*/}
+                        {/* {order.status == "cancel" && (
                           <button className="btn btn-sm rounded-none btn-error w-full text-white">
                             Delete
                           </button>
-                        )}
+                        )} */}
                         <Link
                           to={`/admin/orders/${order._id}`}
                           className="btn btn-sm btn-info text-white rounded-none w-full"
@@ -104,4 +123,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default OrdersPage;
