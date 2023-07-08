@@ -56,7 +56,7 @@ const UpdateProduct = () => {
       seller,
       image,
     } = data;
-    const timeDate = moment().format("YYYY-MM-DD:hh-mm-ss");
+    const timeDate = moment().format("YYYY-MM-DD:HH-mm-ss");
     const updateInfo = {
       name,
       category,

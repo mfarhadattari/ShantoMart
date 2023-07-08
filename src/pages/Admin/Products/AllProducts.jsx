@@ -4,6 +4,7 @@ import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import Loaders from "../../../components/Loaders";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import SectionHeading from "../../../components/SectionHeading";
 
 const AllProducts = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -30,6 +31,10 @@ const AllProducts = () => {
 
   return (
     <main>
+      <SectionHeading
+        heading="All Products"
+        subheading="Here the all products!"
+      />
       <section className="my-10  mx-auto">
         {isLoading || !products ? (
           <div className="h-[300px] flex justify-center items-center">

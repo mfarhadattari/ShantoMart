@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loaders from "../../../components/Loaders";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import SectionHeading from "../../../components/SectionHeading";
 
 const OrdersPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -33,6 +34,10 @@ const OrdersPage = () => {
 
   return (
     <main>
+      <SectionHeading
+        heading="User Orders"
+        subheading="Review the Orders!"
+      />
       <section className="my-10  mx-auto">
         {isLoading || !orders ? (
           <div className="h-[300px] flex justify-center items-center">

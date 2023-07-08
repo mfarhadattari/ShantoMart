@@ -2,6 +2,8 @@ import { useQuery } from "react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loaders from "../../../components/Loaders";
 import { FaEye } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import SectionHeading from "../../../components/SectionHeading";
 
 const CustomersPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -14,6 +16,7 @@ const CustomersPage = () => {
   });
   return (
     <main>
+      <SectionHeading heading="Customer" subheading="Who are using this services!"/>
       <section className="my-10  mx-auto">
         {isLoading || !customers ? (
           <div className="h-[300px] flex justify-center items-center">
@@ -49,9 +52,12 @@ const CustomersPage = () => {
                       <h2 className="text-xl">{customer.phoneNumber}</h2>
                     </td>
                     <th className="text-center">
-                      <button className="btn btn-circle btn-success text-white text-xl">
+                      <Link
+                        to={`/admin/customers/${customer._id}`}
+                        className="btn btn-circle btn-success text-white text-xl"
+                      >
                         <FaEye></FaEye>
-                      </button>
+                      </Link>
                     </th>
                   </tr>
                 ))}

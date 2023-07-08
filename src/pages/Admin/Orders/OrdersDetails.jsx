@@ -21,7 +21,7 @@ const OrdersDetails = () => {
   });
 
   const {
-    // _id,
+    _id,
     userName,
     userPhone,
     totalAmount,
@@ -84,7 +84,7 @@ const OrdersDetails = () => {
               <table className="table border">
                 <tbody>
                   {products.map((product, idx) => (
-                    <tr key={product._id} className="font-medium">
+                    <tr key={idx} className="font-medium">
                       <th>{idx + 1}</th>
                       <td>
                         <div className="avatar">
@@ -106,7 +106,7 @@ const OrdersDetails = () => {
             {order.status == "pending" && (
               <button
                 className="btn btn-sm rounded-none btn-success w-full mt-5 text-white"
-                onClick={() => handelApprove(order._id)}
+                onClick={() => handelApprove(_id)}
               >
                 Approve
               </button>

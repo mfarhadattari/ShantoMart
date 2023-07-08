@@ -15,6 +15,7 @@ import UpdateProduct from "../pages/Admin/Products/UpdateProduct";
 import CustomersPage from "../pages/Admin/Customers/CustomersPage";
 import OrdersPage from "../pages/Admin/Orders/OrdersPage";
 import OrdersDetails from "../pages/Admin/Orders/OrdersDetails";
+import CustomerDetails from "../pages/Admin/Customers/CustomerDetails";
 
 const routers = createBrowserRouter([
   {
@@ -77,7 +78,7 @@ const routers = createBrowserRouter([
       },
       {
         path: "customers/:id",
-        element: <>Customer Details Page</>,
+        element: <CustomerDetails/>,
       },
       {
         path: "orders",
