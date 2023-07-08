@@ -78,7 +78,19 @@ const ProductDetailsPage = () => {
                   </div>
                 )}
 
-                <AddToCartBtn className="w-[200px]" />
+                <AddToCartBtn
+                  className="w-[200px]"
+                  productInfo={{
+                    image: product?.image,
+                    name: product?.name,
+                    productID: product._id,
+                    price: product?.discount
+                      ? product?.price -
+                        (product?.price * product?.discount) / 100
+                      : product.price,
+                    quantity: 1,
+                  }}
+                />
                 <p className="text-lg">Category: {product?.category}</p>
               </div>
             </div>

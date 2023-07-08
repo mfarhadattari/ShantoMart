@@ -31,7 +31,18 @@ const ProductCard = ({ productInfo }) => {
           </p>
         </div>
       </Link>
-      <AddToCartBtn />
+      <AddToCartBtn
+        productInfo={{
+          image: productInfo?.image,
+          name: productInfo?.name,
+          productID: productInfo._id,
+          price: productInfo?.discount
+            ? productInfo?.price -
+              (productInfo?.price * productInfo?.discount) / 100
+            : productInfo.price,
+          quantity: 1,
+        }}
+      />
     </div>
   );
 };
