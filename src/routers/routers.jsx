@@ -1,4 +1,4 @@
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/Home/HomePage";
 import ProductsPage from "../pages/Products/ProductsPage";
@@ -8,6 +8,7 @@ import PrivateRouter from "./PrivateRouter";
 import RegisterPage from "../pages/Account/RegisterPage";
 import RegisterSetupPage from "../pages/Account/RegisterSetupPage";
 import CartPage from "../pages/Cart/CartPage";
+import DashboardLayout from "../layout/DashboardLayout";
 
 const routers = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const routers = createBrowserRouter([
         path: "/carts",
         element: (
           <PrivateRouter>
-            <CartPage/>
+            <CartPage />
           </PrivateRouter>
         ),
       },
@@ -55,10 +56,9 @@ const routers = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <>
-        <h1>Admin Layout</h1>
-        <Outlet></Outlet>
-      </>
+      <PrivateRouter>
+        <DashboardLayout />
+      </PrivateRouter>
     ),
     children: [
       {

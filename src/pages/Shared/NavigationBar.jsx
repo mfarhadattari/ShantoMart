@@ -92,8 +92,8 @@ const NavigationBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] bg-white p-2 shadow rounded-box w-52"
             >
-              <NavLink to="/dashboard/profile">Profile</NavLink>
-              <NavLink to="/dashboard/orders">Orders</NavLink>
+              <NavLink to="/profile">Profile</NavLink>
+              <NavLink to="/orders">Orders</NavLink>
               <button className="btn btn-sm mt-3 w-fit" onClick={handelLogOut}>
                 Log Out
               </button>
