@@ -12,6 +12,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import AllProducts from "../pages/Admin/Products/AllProducts";
 import AddProduct from "../pages/Admin/Products/AddProduct";
 import UpdateProduct from "../pages/Admin/Products/UpdateProduct";
+import Customers from "../pages/Admin/Customers/Customers";
 
 const routers = createBrowserRouter([
   {
@@ -70,7 +71,7 @@ const routers = createBrowserRouter([
       },
       {
         path: "customers",
-        element: <>Customer Page</>,
+        element: <Customers />,
       },
       {
         path: "customers/:id",
