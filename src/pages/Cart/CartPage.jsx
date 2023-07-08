@@ -5,11 +5,16 @@ import { useQuery } from "react-query";
 import banner from "../../assets/Banners/banner2.jpg";
 import Loaders from "../../components/Loaders";
 import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const CartPage = () => {
   const { axiosPublic } = useAxiosPublic();
   const { authUser } = useAuth();
-  const { data: carts = [], isLoading } = useQuery({
+  const {
+    data: carts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["product", axiosPublic, authUser],
     queryFn: async () => {
       const res = await axiosPublic.get(
@@ -19,7 +24,27 @@ const CartPage = () => {
     },
   });
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    axiosPublic.delete(`/delete-cart/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        toast("Remove Successfully");
+        refetch();
+      }
+    });
+  };
+
+  const updateQuantity = (id, quantity) => {
+    axiosPublic
+      .patch(`/update-quantity/${id}`, {
+        quantity,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+        }
+      });
+  };
+
   return (
     <main>
       <Cover
@@ -35,7 +60,6 @@ const CartPage = () => {
         ) : (
           <div className="overflow-x-auto">
             <table className="table">
-              {/* head */}
               <thead>
                 <tr>
                   <th>#</th>
@@ -66,15 +90,25 @@ const CartPage = () => {
                     </td>
                     <td>
                       <div className="flex items-center gap-2">
-                        {/* <FaMinus /> */}
-                        <input
-                          type="number"
-                          className="border p-2 text-xl w-16 m-0 text-center"
-                          value={item.quantity}
-                          //   max={20}
-                          //   min={1}
-                        />
-                        {/* <FaPlus /> */}
+                        <button
+                          disabled={item.quantity <= 1}
+                          onClick={() =>
+                            updateQuantity(item._id, item.quantity - 1)
+                          }
+                        >
+                          <FaMinus />
+                        </button>
+                        <p className="border p-2 w-16 text-center text-xl">
+                          {item.quantity}
+                        </p>
+                        <button
+                          disabled={item.quantity > 20}
+                          onClick={() =>
+                            updateQuantity(item._id, item.quantity + 1)
+                          }
+                        >
+                          <FaPlus />
+                        </button>
                       </div>
                     </td>
                     <th>
