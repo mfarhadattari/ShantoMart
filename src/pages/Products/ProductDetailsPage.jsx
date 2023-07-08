@@ -9,7 +9,7 @@ const ProductDetailsPage = () => {
   const { id } = useParams();
   const { axiosPublic } = useAxiosPublic();
   const { data: product = {}, isLoading } = useQuery({
-    queryKey: ["product"],
+    queryKey: ["product", axiosPublic, id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/products/${id}`);
       return await res.data;

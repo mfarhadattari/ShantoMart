@@ -7,6 +7,7 @@ import LoginPage from "../pages/Account/LoginPage";
 import PrivateRouter from "./PrivateRouter";
 import RegisterPage from "../pages/Account/RegisterPage";
 import RegisterSetupPage from "../pages/Account/RegisterSetupPage";
+import CartPage from "../pages/Cart/CartPage";
 
 const routers = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const routers = createBrowserRouter([
         path: "/carts",
         element: (
           <PrivateRouter>
-            <>Carts Page</>
+            <CartPage/>
           </PrivateRouter>
         ),
       },

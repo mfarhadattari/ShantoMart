@@ -8,7 +8,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const ProductsPage = () => {
   const { axiosPublic } = useAxiosPublic();
   const { data: products = [], isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", axiosPublic],
     queryFn: async () => {
       const res = await axiosPublic.get("/products");
       return await res.data;
