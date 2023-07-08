@@ -24,6 +24,8 @@ const CartPage = () => {
     },
   });
 
+  console.log(carts);
+
   const handleDelete = (id) => {
     axiosPublic.delete(`/delete-cart/${id}`).then((res) => {
       if (res.data.deletedCount > 0) {
