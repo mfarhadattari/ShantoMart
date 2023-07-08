@@ -3,17 +3,16 @@ import { useParams } from "react-router-dom";
 import Loaders from "../../components/Loaders";
 import { Rating } from "@smastrom/react-rating";
 import AddToCartBtn from "../../components/AddToCartBtn";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-
+  const { axiosPublic } = useAxiosPublic();
   const { data: product = {}, isLoading } = useQuery({
     queryKey: ["product"],
     queryFn: async () => {
-      const res = await fetch("/data/products.json");
-      const products = await res.json();
-      const product = products.find((item) => item._id === id);
-      return product;
+      const res = await axiosPublic.get(`/products/${id}`);
+      return await res.data;
     },
   });
 

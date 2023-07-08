@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import SectionHeading from "../../../components/SectionHeading";
 import ProductCard from "../../../components/ProductCard";
 import Loaders from "../../../components/Loaders";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const NewProducts = () => {
+  const { axiosPublic } = useAxiosPublic();
   const { data: newProducts = [], isLoading } = useQuery({
     queryKey: ["newProducts"],
     queryFn: async () => {
-      const res = await fetch("/data/products.json");
-      return await res.json();
+      const res = await axiosPublic.get("/new-products");
+      return res.data;
     },
   });
   return (
