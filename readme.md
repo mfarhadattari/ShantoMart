@@ -13,6 +13,8 @@
 * React Text Modifier
 * React Query
 * React Rating
-* Firebase
+* Firebase Authentication
 * Firebase UI
 * React Hot Toast
+* React Hook Form
+* ImageBB
