@@ -3,6 +3,10 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useParams } from "react-router-dom";
 import SectionHeading from "../../../components/SectionHeading";
 import Loaders from "../../../components/Loaders";
+import { useForm } from "react-hook-form";
+import moment from "moment";
+import { toast } from "react-hot-toast";
+import { useState } from "react";
 
 const categories = [
   "Sneakers",
@@ -22,13 +26,59 @@ const categories = [
 const UpdateProduct = () => {
   const { id } = useParams();
   const { axiosPublic } = useAxiosPublic();
-  const { data: product = {}, isLoading } = useQuery({
+  const {
+    data: product = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["product", axiosPublic, id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/products/${id}`);
       return await res.data;
     },
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const [imageURL, setImageURL] = useState("");
+  const handelUpdate = (data) => {
+    const {
+      name,
+      category,
+      price,
+      description,
+      discount,
+      stock,
+      seller,
+      image,
+    } = data;
+    const timeDate = moment().format("YYYY-MM-DD:hh-mm-ss");
+    const updateInfo = {
+      name,
+      category,
+      seller,
+      image,
+      price: parseInt(price),
+      discount: parseInt(discount),
+      stock: parseInt(stock),
+      description,
+      timeDate,
+    };
+
+    axiosPublic
+      .patch(`/admin/update-product/${product._id}`, updateInfo)
+      .then(({ data }) => {
+        if (data.modifiedCount > 0) {
+          toast("Updated Successfully!");
+          refetch();
+        }
+      });
+  };
+
   return (
     <main>
       <SectionHeading
@@ -41,23 +91,30 @@ const UpdateProduct = () => {
         </div>
       ) : (
         <section className="my-10">
-          <form>
+          <form onSubmit={handleSubmit(handelUpdate)}>
             <div className="grid grid-col lg:grid-cols-3 gap-5">
               <div>
-                <img src={product.image} className="h-full " />
+                <label className="label">
+                  <span className="label-text">Product Image*</span>
+                </label>
+                <img src={imageURL || product.image} />
               </div>
               <div className="col-span-2">
                 <div className="space-y-2">
                   <div className="form-control w-full">
                     <label className="label">
-                      <span className="label-text">Product name*</span>
+                      <span className="label-text">Product Name*</span>
                     </label>
                     <input
                       type="text"
                       defaultValue={product.name}
                       placeholder="Product name"
                       className="input input-bordered rounded-none "
+                      {...register("name", { required: true })}
                     />
+                    {errors?.name && (
+                      <p className="errorText">Name is required</p>
+                    )}
                   </div>
                   <div className="flex flex-col md:flex-row gap-5">
                     <div className="form-control w-full">
@@ -67,12 +124,16 @@ const UpdateProduct = () => {
                       <select
                         className="select select-bordered rounded-none w-full max-w-xs"
                         defaultValue={product.category}
+                        {...register("category", { required: true })}
                       >
                         <option>{product.category}</option>
                         {categories.map((category, idx) => (
                           <option key={idx}>{category}</option>
                         ))}
                       </select>
+                      {errors?.category && (
+                        <p className="errorText">Category is required</p>
+                      )}
                     </div>
                     <div className="form-control w-full">
                       <label className="label">
@@ -83,7 +144,11 @@ const UpdateProduct = () => {
                         placeholder="Seller"
                         defaultValue={product.seller}
                         className="input input-bordered rounded-none"
+                        {...register("seller", { required: true })}
                       />
+                      {errors?.seller && (
+                        <p className="errorText">Seller is required</p>
+                      )}
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row gap-5">
@@ -96,7 +161,11 @@ const UpdateProduct = () => {
                         placeholder="Price"
                         defaultValue={product.price}
                         className="input input-bordered rounded-none"
+                        {...register("price", { required: true })}
                       />
+                      {errors?.price && (
+                        <p className="errorText">Price is required</p>
+                      )}
                     </div>
                     <div className="form-control w-full">
                       <label className="label">
@@ -107,7 +176,11 @@ const UpdateProduct = () => {
                         placeholder="Discount"
                         defaultValue={product.discount}
                         className="input input-bordered rounded-none"
+                        {...register("discount", { required: true })}
                       />
+                      {errors?.discount && (
+                        <p className="errorText">Discount is required</p>
+                      )}
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row gap-5">
@@ -120,17 +193,27 @@ const UpdateProduct = () => {
                         placeholder="Stock"
                         defaultValue={product.stock}
                         className="input input-bordered rounded-none"
+                        {...register("stock", { required: true })}
                       />
+                      {errors?.stock && (
+                        <p className="errorText">Stock is required</p>
+                      )}
                     </div>
 
                     <div className="form-control w-full">
                       <label className="label">
-                        <span className="label-text">Image*</span>
+                        <span className="label-text">Image URL*</span>
                       </label>
                       <input
-                        type="file"
-                        className="file-input w-full rounded-none bg-gray-200"
+                        type="url"
+                        className="input input-bordered rounded-none"
+                        defaultValue={product.image}
+                        onBlurCapture={(e) => setImageURL(e.target.value)}
+                        {...register("image", { required: true })}
                       />
+                      {errors?.image && (
+                        <p className="errorText">Image URL is required</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -144,7 +227,12 @@ const UpdateProduct = () => {
                 className="textarea textarea-bordered rounded-none"
                 rows={4}
                 placeholder="Products Description"
+                defaultValue={product.description}
+                {...register("description", { required: true })}
               ></textarea>
+              {errors?.description && (
+                <p className="errorText">Description is required</p>
+              )}
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-success text-white rounded-none">

@@ -56,12 +56,12 @@ const AddProduct = () => {
           const product = {
             name,
             category,
-            price,
-            description,
-            discount,
-            stock,
             seller,
             image: imageURL,
+            price: parseInt(price),
+            discount: parseInt(discount),
+            stock: parseInt(stock),
+            description,
             timeDate
           };
           axiosPublic.post("/admin/add-product", product).then(({ data }) => {

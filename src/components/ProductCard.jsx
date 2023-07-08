@@ -2,29 +2,24 @@ import { Link } from "react-router-dom";
 import AddToCartBtn from "./AddToCartBtn";
 
 const ProductCard = ({ productInfo }) => {
+  const { name, price, discount, image, _id } = productInfo;
+  const discountPrice = price - (price * discount) / 100;
+
   return (
-    <div className="card w-full rounded-none">
-      <Link to={`/products/${productInfo?._id}`}>
+    <div className="card w-full rounded-none h-[500px] flex flex-col justify-between">
+      <Link to={`/products/${_id}`}>
         <figure>
-          <img
-            className="w-full h-[300px]"
-            src={productInfo?.image}
-            alt={productInfo?.name}
-          />
+          <img className="w-full h-[300px]" src={image} alt={name} />
         </figure>
         <div className="card-body text-center pb-2">
-          <h2 className="card-title w-fit mx-auto">{productInfo?.name}</h2>
+          <h2 className="card-title w-fit mx-auto">{name}</h2>
           <p className="text-2xl flex gap-3 justify-center">
-            <span
-              className={productInfo?.discount && "line-through text-red-500"}
-            >
-              {productInfo?.price}&#2547;
+            <span className={discount > 0 ? "line-through text-red-500" : ""}>
+              {price}&#2547;
             </span>
-            {productInfo?.discount && (
+            {discount > 0 && (
               <span className="text-blue-700">
-                {productInfo?.discount &&
-                  productInfo?.price -
-                    (productInfo?.price * productInfo?.discount) / 100}
+                {discountPrice}
                 &#2547;
               </span>
             )}
@@ -32,14 +27,12 @@ const ProductCard = ({ productInfo }) => {
         </div>
       </Link>
       <AddToCartBtn
+        className="w-full"
         productInfo={{
-          image: productInfo?.image,
-          name: productInfo?.name,
-          productID: productInfo._id,
-          price: productInfo?.discount
-            ? productInfo?.price -
-              (productInfo?.price * productInfo?.discount) / 100
-            : productInfo.price,
+          image: image,
+          name: name,
+          productID: _id,
+          price: discount > 0 ? discountPrice : price,
           quantity: 1,
         }}
       />

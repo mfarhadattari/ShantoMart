@@ -15,7 +15,7 @@ const CartPage = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["product", axiosPublic, authUser],
+    queryKey: ["carts", axiosPublic, authUser],
     queryFn: async () => {
       const res = await axiosPublic.get(
         `my-cart?phoneNumber=${authUser.phoneNumber}`
