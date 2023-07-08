@@ -9,6 +9,7 @@ import RegisterPage from "../pages/Account/RegisterPage";
 import RegisterSetupPage from "../pages/Account/RegisterSetupPage";
 import CartPage from "../pages/Cart/CartPage";
 import DashboardLayout from "../layout/DashboardLayout";
+import AllProducts from "../pages/Admin/Products/AllProducts";
 
 const routers = createBrowserRouter([
   {
@@ -83,7 +84,7 @@ const routers = createBrowserRouter([
       },
       {
         path: "products",
-        element: <>Products Page</>,
+        element: <AllProducts />,
       },
       {
         path: "products/:id",

@@ -34,7 +34,7 @@ const DashboardLayout = () => {
       <NavigationBar></NavigationBar>
       <div className="h-full w-full flex">
         <div className="w-1/4 hidden lg:block">
-          <ul className="menu px-1">
+          <ul className="menu px-1 fixed">
             {options.map((option) => (
               <NavLink key={option.path} to={option.path}>
                 {option.name}
