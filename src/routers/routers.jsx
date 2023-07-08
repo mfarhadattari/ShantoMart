@@ -10,6 +10,8 @@ import RegisterSetupPage from "../pages/Account/RegisterSetupPage";
 import CartPage from "../pages/Cart/CartPage";
 import DashboardLayout from "../layout/DashboardLayout";
 import AllProducts from "../pages/Admin/Products/AllProducts";
+import AddProduct from "../pages/Admin/Products/AddProduct";
+import UpdateProduct from "../pages/Admin/Products/UpdateProduct";
 
 const routers = createBrowserRouter([
   {
@@ -88,11 +90,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "products/:id",
-        element: <>Product Page</>,
+        element: <UpdateProduct />,
       },
       {
         path: "add-product",
-        element: <>Add Product Page</>,
+        element: <AddProduct />,
       },
     ],
   },

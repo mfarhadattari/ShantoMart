@@ -28,7 +28,7 @@ const ProductDetailsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-5">
               <div>
                 <img
-                  className="h-[500px] w-full"
+                  className="h-[400px] w-fit"
                   src={product?.image}
                   alt={product?.name}
                 />
@@ -57,26 +57,6 @@ const ProductDetailsPage = () => {
                     </span>
                   )}
                 </p>
-
-                {product?.featured && (
-                  <ul className="text-lg list-disc ps-5">
-                    {product?.featured?.map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-
-                {product?.size && (
-                  <div className="flex gap-5">
-                    Available Size:
-                    {product?.size?.map((item, idx) => (
-                      <span key={idx} className="text-blue-700">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
                 <AddToCartBtn
                   className="w-[200px]"
                   productInfo={{

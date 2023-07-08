@@ -3,16 +3,30 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import Loaders from "../../../components/Loaders";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const AllProducts = () => {
   const { axiosPublic } = useAxiosPublic();
-  const { data: products = [], isLoading } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["products", axiosPublic],
     queryFn: async () => {
       const res = await axiosPublic.get("admin/products");
       return await res.data;
     },
   });
+
+  const deleteProduct = (id) => {
+    axiosPublic.delete(`/admin/delete-product/${id}`).then((res) => {
+      if (res.data.deletedCount > 0) {
+        toast("Deleted Successfully");
+        refetch();
+      }
+    });
+  };
 
   return (
     <main>
@@ -61,10 +75,16 @@ const AllProducts = () => {
                         >
                           <FaEye />
                         </Link>
-                        <button className="btn btn-circle btn-accent text-white text-xl">
+                        <Link
+                          to={`/admin/products/${product._id}`}
+                          className="btn btn-circle btn-accent text-white text-xl"
+                        >
                           <FaEdit />
-                        </button>
-                        <button className="btn btn-circle btn-error text-white text-xl">
+                        </Link>
+                        <button
+                          className="btn btn-circle btn-error text-white text-xl"
+                          onClick={() => deleteProduct(product._id)}
+                        >
                           <FaTrashAlt />
                         </button>
                       </div>
