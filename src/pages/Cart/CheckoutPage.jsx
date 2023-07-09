@@ -81,11 +81,11 @@ const CheckoutPage = () => {
         </div>
       ) : (
         <section className="my-10">
-          <div className="flex mt-5">
+          <div className="flex mt-5 items-center justify-center">
             {/*--------------------  Checkout Form ----------------------- */}
-            <div className="card  w-full md:w-1/2 mx-auto">
+            <div className="card w-full md:w-1/2 mx-auto">
               <h1 className="text-2xl text-center">Checkout Form</h1>
-              <form className="card-body w-full" onSubmit={handelSubmit}>
+              <form className="card-body w-full mx-auto" onSubmit={handelSubmit}>
                 <div className="flex flex-col md:flex-row w-full gap-2 ">
                   <div className="form-control w-full">
                     <input

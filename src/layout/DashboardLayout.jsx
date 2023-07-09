@@ -48,7 +48,7 @@ const DashboardLayout = () => {
         </div>
         <div className="w-full lg:w-3/4 relative">
           <ul
-            className={`menu bg-slate-950 text-white lg:hidden w-[200px] absolute ${
+            className={`menu bg-white lg:hidden w-[200px] absolute z-40 ${
               isOpen ? "top-0 right-0" : "hidden"
             }`}
           >
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
           </ul>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden absolute top-5 right-5 text-3xl btn btn-circle"
+            className="lg:hidden absolute top-5 right-5 text-3xl btn btn-circle z-50"
           >
             <span className="animate-spin">
               {isOpen ? <FaXmark></FaXmark> : <FaGear></FaGear>}
