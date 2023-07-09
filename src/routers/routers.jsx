@@ -18,6 +18,7 @@ import OrdersDetails from "../pages/Admin/Orders/OrdersDetails";
 import CustomerDetails from "../pages/Admin/Customers/CustomerDetails";
 import AddCustomer from "../pages/Admin/Customers/AddCustomer";
 import AdminHome from "../pages/Admin/AdminHome/AdminHome";
+import CheckoutPage from "../pages/Cart/CheckoutPage";
 
 const routers = createBrowserRouter([
   {
@@ -58,7 +59,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <>Checkout Page</>,
+        element: (
+          <PrivateRouter>
+            <CheckoutPage />
+          </PrivateRouter>
+        ),
       },
     ],
   },
