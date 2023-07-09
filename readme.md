@@ -1,6 +1,11 @@
 # ShantoMart
 ### An E-commerce Site
 
+# Fetured
+* Admin Management System
+* Backend Authentication System
+* Cart and Order Management System
+
 ### Client URL: https://shanto-mart.vercel.app/
 ### Server URL: https://shanto-mart-server.vercel.app/
 ### Server Repo: https://github.com/mfarhadattari/ShantoMartServer.git
