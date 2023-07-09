@@ -18,8 +18,6 @@ const CustomerDetails = () => {
 
   const { customerInfo, cart, ordersInfo } = customerDetails;
 
-  console.log(cart);
-
   return (
     <main>
       <SectionHeading

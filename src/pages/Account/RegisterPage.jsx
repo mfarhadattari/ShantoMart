@@ -27,7 +27,6 @@ const RegistrationPage = () => {
     };
 
     axiosPublic.post("/create-account", userInfo).then(({ data }) => {
-      console.log(data);
       if (data.alreadyAccount) {
         return toast("Phone number is already used!");
       }

@@ -20,7 +20,7 @@ const AdminHome = () => {
       return res.data;
     },
   });
-  console.log(overviews);
+  
   return (
     <main>
       <SectionHeading

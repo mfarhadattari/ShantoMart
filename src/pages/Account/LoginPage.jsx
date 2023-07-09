@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import { toast } from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const LoginPage = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const { axiosPublic } = useAxiosPublic();
+  const { setAuthUser } = useAuth();
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const redirect = location?.state?.from || "/";
 
   const {
     register,
@@ -27,9 +32,10 @@ const LoginPage = () => {
     axiosPublic.post("/login", userInfo).then(({ data }) => {
       if (data.token) {
         localStorage.setItem("ShantoMartAuthToken", data.token);
+        setAuthUser(data.user);
         toast("Successfully Login");
         reset();
-        return navigate("/");
+        return navigate(redirect, {replace: true});
       }
       if (data.error) {
         return toast(errors.message);

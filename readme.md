@@ -4,7 +4,7 @@
 ### Client URL: https://shanto-mart.vercel.app/
 ### Server URL: https://shanto-mart-server.vercel.app/
 ### Server Repo: https://github.com/mfarhadattari/ShantoMartServer.git
-## Used
+## Frontend Used
 * React Vite
 * React Router DOM
 * Tailwind CSS
@@ -15,8 +15,17 @@
 * React Text Modifier
 * React Query
 * React Rating
-* Firebase Authentication
-* Firebase UI
 * React Hot Toast
 * React Hook Form
 * ImageBB
+* Axios
+
+
+## Backend used
+* Node JS
+* Express JS
+* MongoDB
+* JWT
+* cors
+* bcrypt
+* dotenv
