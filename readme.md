@@ -1,10 +1,10 @@
-# ShantoMart
+# ------------------ ShantoMart ----------------
 ### An E-commerce Site with user login & registering, admin management and cart & order management system.
 
 # Fetured
-* Admin Management System
+* Admin Data Management System
 * Backend Authentication System
-* Cart and Order Management System
+* Cart & Order Management System
 
 # URL
 * Client URL: https://shanto-mart.vercel.app/
