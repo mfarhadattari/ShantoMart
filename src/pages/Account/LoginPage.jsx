@@ -38,7 +38,7 @@ const LoginPage = () => {
         return navigate(redirect, {replace: true});
       }
       if (data.error) {
-        return toast(errors.message);
+        return toast(data.message);
       } else {
         toast("Something is wrong! Try again!");
       }

@@ -9,7 +9,7 @@ const Cover = ({ backgroundURL, heading, subheading }) => {
         backgroundPosition: "center",
       }}
     >
-      <div className="flex flex-col justify-center items-center h-full bg-black text-white bg-opacity-60">
+      <div className="flex flex-col justify-center text-center items-center h-full bg-black text-white bg-opacity-60">
         <h1 className="text-4xl uppercase">{heading}</h1>
         <p className="text-xl">{subheading}</p>
       </div>

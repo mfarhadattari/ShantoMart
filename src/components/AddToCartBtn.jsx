@@ -7,8 +7,11 @@ const AddToCartBtn = ({ className, productInfo }) => {
   const { axiosPublic } = useAxiosPublic();
 
   const handelAddToCart = () => {
-    if (!productInfo || !authUser || authLoading) {
+    if (!productInfo) {
       return;
+    }
+    if (!authUser || authLoading) {
+      return toast("Please login first");
     }
     axiosPublic
       .post("/add-to-cart", {
