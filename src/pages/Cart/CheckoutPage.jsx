@@ -40,6 +40,7 @@ const CheckoutPage = () => {
     const city = form.city.value;
     const location = form.location.value;
     const transactionID = form.transactionID.value;
+    const status = "pending";
     const paymentTime = moment().format("YYYY-MM-DD:HH-mm-ss");
     const products = carts.map((cart) => ({
       cartID: cart._id,
@@ -56,6 +57,7 @@ const CheckoutPage = () => {
       transactionID,
       paymentTime,
       products,
+      status,
       city,
       location,
     };
@@ -85,7 +87,10 @@ const CheckoutPage = () => {
             {/*--------------------  Checkout Form ----------------------- */}
             <div className="card w-full md:w-1/2 mx-auto">
               <h1 className="text-2xl text-center">Checkout Form</h1>
-              <form className="card-body w-full mx-auto" onSubmit={handelSubmit}>
+              <form
+                className="card-body w-full mx-auto"
+                onSubmit={handelSubmit}
+              >
                 <div className="flex flex-col md:flex-row w-full gap-2 ">
                   <div className="form-control w-full">
                     <input
