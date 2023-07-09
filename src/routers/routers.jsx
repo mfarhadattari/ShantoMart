@@ -4,6 +4,7 @@ import HomePage from "../pages/Home/HomePage";
 import ProductsPage from "../pages/Products/ProductsPage";
 import ProductDetailsPage from "../pages/Products/ProductDetailsPage";
 import LoginPage from "../pages/Account/LoginPage";
+import PrivateRouter from "./PrivateRouter";
 import RegisterPage from "../pages/Account/RegisterPage";
 import CartPage from "../pages/Cart/CartPage";
 import DashboardLayout from "../layout/DashboardLayout";
@@ -45,17 +46,29 @@ const routers = createBrowserRouter([
       },
       {
         path: "/carts",
-        element: <CartPage />,
+        element: (
+          <PrivateRouter>
+            <CartPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/checkout",
-        element: <CheckoutPage />,
+        element: (
+          <PrivateRouter>
+            <CheckoutPage />
+          </PrivateRouter>
+        ),
       },
     ],
   },
   {
     path: "/admin",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRouter>
+        <DashboardLayout />
+      </PrivateRouter>
+    ),
     children: [
       {
         path: "/admin",
