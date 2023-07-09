@@ -17,6 +17,7 @@ import OrdersPage from "../pages/Admin/Orders/OrdersPage";
 import OrdersDetails from "../pages/Admin/Orders/OrdersDetails";
 import CustomerDetails from "../pages/Admin/Customers/CustomerDetails";
 import AddCustomer from "../pages/Admin/Customers/AddCustomer";
+import AdminHome from "../pages/Admin/AdminHome/AdminHome";
 
 const routers = createBrowserRouter([
   {
@@ -71,7 +72,7 @@ const routers = createBrowserRouter([
     children: [
       {
         path: "/admin",
-        element: <>Admin Home</>,
+        element: <AdminHome />,
       },
       {
         path: "customers",
@@ -79,11 +80,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "customers/:id",
-        element: <CustomerDetails/>,
+        element: <CustomerDetails />,
       },
       {
         path: "add-customer",
-        element: <AddCustomer/>,
+        element: <AddCustomer />,
       },
       {
         path: "orders",
