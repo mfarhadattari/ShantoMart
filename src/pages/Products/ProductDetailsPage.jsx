@@ -35,14 +35,16 @@ const ProductDetailsPage = () => {
               </div>
               <div className="space-y-4">
                 <h1 className="text-4xl">{product?.name}</h1>
-                <div className="flex items-center gap-2">
-                  <Rating
-                    style={{ maxWidth: 100 }}
-                    value={product?.ratings}
-                    readOnly
-                  />
-                  <span>({product?.ratings})</span>
-                </div>
+                {product?.rating && (
+                  <div className="flex items-center gap-2">
+                    <Rating
+                      style={{ maxWidth: 100 }}
+                      value={product?.ratings}
+                      readOnly
+                    />
+                    <span>({product?.ratings})</span>
+                  </div>
+                )}
                 <p className="text-2xl flex gap-3">
                   <span
                     className={product?.discount && "line-through text-red-500"}

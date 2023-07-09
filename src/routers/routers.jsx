@@ -63,7 +63,7 @@ const routers = createBrowserRouter([
     ],
   },
   {
-    path: "/admin",
+    path: "/dashboard",
     element: (
       <PrivateRouter>
         <DashboardLayout />
@@ -71,7 +71,7 @@ const routers = createBrowserRouter([
     ),
     children: [
       {
-        path: "/admin",
+        path: "/dashboard",
         element: <AdminHome />,
       },
       {

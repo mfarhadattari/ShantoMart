@@ -81,7 +81,7 @@ const AllProducts = () => {
                           <FaEye />
                         </Link>
                         <Link
-                          to={`/admin/products/${product._id}`}
+                          to={`/dashboard/products/${product._id}`}
                           className="btn btn-circle btn-accent text-white text-xl"
                         >
                           <FaEdit />

@@ -69,7 +69,7 @@ const CustomerDetails = () => {
                         <p className="text-lg">{order.totalAmount} &#2547;</p>
                         <p className="text-lg uppercase">{order.status}</p>
                         <Link
-                          to={`/admin/orders/${order._id}`}
+                          to={`/dashboard/orders/${order._id}`}
                           className="btn btn-sm btn-info text-white rounded-none"
                         >
                           Details
@@ -81,25 +81,30 @@ const CustomerDetails = () => {
               )}
             </div>
           </section>
-          <section>
-            <h1 className="text-3xl font-bold text-center my-5">
-              Carts Information
-            </h1>
-            <div>
-              {cart.map((item) => (
-                <div key={item._id} className="font-medium flex justify-between items-center border px-10 py-2">
-                  <div className="avatar">
-                    <div className="w-20 h-20">
-                      <img src={item.image} alt={item.name} />
+          {cart.length > 0 && (
+            <section>
+              <h1 className="text-3xl font-bold text-center my-5">
+                Carts Information
+              </h1>
+              <div>
+                {cart.map((item) => (
+                  <div
+                    key={item._id}
+                    className="font-medium flex justify-between items-center border px-10 py-2"
+                  >
+                    <div className="avatar">
+                      <div className="w-20 h-20">
+                        <img src={item.image} alt={item.name} />
+                      </div>
                     </div>
+                    <h2 className="uppercase">{item.name}</h2>
+                    <p>Price: {item.price} &#2547;</p>
+                    <p>Quantity: {item.quantity}</p>
                   </div>
-                  <h2 className="uppercase">{item.name}</h2>
-                  <p>Price: {item.price} &#2547;</p>
-                  <p>Quantity: {item.quantity}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
         </>
       )}
     </main>

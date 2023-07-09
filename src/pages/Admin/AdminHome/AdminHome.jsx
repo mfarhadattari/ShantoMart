@@ -35,7 +35,7 @@ const AdminHome = () => {
         <section className="w-full mx-auto space-y-3 mt-5">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full justify-between items-center gap-3">
             <Link
-              to="/admin/products"
+              to="/dashboard/products"
               className="w-full border p-5 flex justify-between"
             >
               <div className="flex flex-col">
@@ -49,7 +49,7 @@ const AdminHome = () => {
               </div>
             </Link>
             <Link
-              to="/admin/customers"
+              to="/dashboard/customers"
               className="w-full border p-5 flex justify-between"
             >
               <div className="flex flex-col">
@@ -65,7 +65,7 @@ const AdminHome = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 w-full justify-between items-center gap-3">
             <Link
-              to="/admin/orders"
+              to="/dashboard/orders"
               className="w-full border p-5 flex justify-between"
             >
               <div className="flex flex-col">

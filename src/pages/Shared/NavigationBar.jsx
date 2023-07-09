@@ -65,7 +65,7 @@ const NavigationBar = () => {
       <div className="navbar-end">
         {/* -------------------- Admin Dashboard ------------- */}
         {authUser && (
-          <NavLink to="/admin">
+          <NavLink to="/dashboard">
             <label className="btn btn-ghost btn-circle">
               <div className="text-xl flex justify-center items-center w-full h-full">
                 <FaGear></FaGear>

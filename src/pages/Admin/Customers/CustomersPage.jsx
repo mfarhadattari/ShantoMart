@@ -53,7 +53,7 @@ const CustomersPage = () => {
                     </td>
                     <th className="text-center">
                       <Link
-                        to={`/admin/customers/${customer._id}`}
+                        to={`/dashboard/customers/${customer._id}`}
                         className="btn btn-circle btn-success text-white text-xl"
                       >
                         <FaEye></FaEye>

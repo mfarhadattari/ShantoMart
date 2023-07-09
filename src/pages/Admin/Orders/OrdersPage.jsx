@@ -110,7 +110,7 @@ const OrdersPage = () => {
                           </button>
                         )} */}
                         <Link
-                          to={`/admin/orders/${order._id}`}
+                          to={`/dashboard/orders/${order._id}`}
                           className="btn btn-sm btn-info text-white rounded-none w-full"
                         >
                           Details

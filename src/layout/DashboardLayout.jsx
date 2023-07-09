@@ -6,27 +6,27 @@ import { Outlet } from "react-router-dom";
 
 const options = [
   {
-    path: "/admin",
+    path: "/dashboard",
     name: "Admin Home",
   },
   {
-    path: "/admin/products",
+    path: "/dashboard/products",
     name: "Products",
   },
   {
-    path: "/admin/add-product",
+    path: "/dashboard/add-product",
     name: "Add Product",
   },
   {
-    path: "/admin/customers",
+    path: "/dashboard/customers",
     name: "Customers",
   },
   {
-    path: "/admin/add-customer",
+    path: "/dashboard/add-customer",
     name: "Add Customer",
   },
   {
-    path: "/admin/orders",
+    path: "/dashboard/orders",
     name: "Orders",
   },
 ];
