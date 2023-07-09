@@ -22,6 +22,10 @@ const options = [
     name: "Customers",
   },
   {
+    path: "/admin/add-customer",
+    name: "Add Customer",
+  },
+  {
     path: "/admin/orders",
     name: "Orders",
   },

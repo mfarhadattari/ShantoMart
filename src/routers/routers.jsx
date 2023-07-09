@@ -16,6 +16,7 @@ import CustomersPage from "../pages/Admin/Customers/CustomersPage";
 import OrdersPage from "../pages/Admin/Orders/OrdersPage";
 import OrdersDetails from "../pages/Admin/Orders/OrdersDetails";
 import CustomerDetails from "../pages/Admin/Customers/CustomerDetails";
+import AddCustomer from "../pages/Admin/Customers/AddCustomer";
 
 const routers = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const routers = createBrowserRouter([
       {
         path: "customers/:id",
         element: <CustomerDetails/>,
+      },
+      {
+        path: "add-customer",
+        element: <AddCustomer/>,
       },
       {
         path: "orders",

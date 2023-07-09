@@ -1,10 +1,12 @@
 # ShantoMart
+### An E-commerce Site
 
-## Live Site : https://shanto-mart.vercel.app
-
-
+### Client URL: https://shanto-mart.vercel.app/
+### Server URL: https://shanto-mart-server.vercel.app/
+### Server Repo: https://github.com/mfarhadattari/ShantoMartServer.git
 ## Used
 * React Vite
+* React Router DOM
 * Tailwind CSS
 * Daisy UI
 * Moment JS
