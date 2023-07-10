@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
-.errorText{
+.errorText {
   @apply text-red-500 mt-2;
+}
+
+.input-field {
+  @apply input input-bordered border-gray-500 rounded-none w-full;
+}
+
+.select-field {
+  @apply select select-bordered border-gray-500 rounded-none w-full;
+}
+
+.textarea-field {
+  @apply textarea textarea-bordered border-gray-500 rounded-none w-full;
 }

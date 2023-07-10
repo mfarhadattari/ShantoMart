@@ -32,7 +32,7 @@ const AdminHome = () => {
           <Loaders />
         </div>
       ) : (
-        <section className="w-full mx-auto space-y-3 mt-5">
+        <section className="w-full mx-auto space-y-3 p-5">
           <div className="grid grid-cols-1 md:grid-cols-2 w-full justify-between items-center gap-3">
             <Link
               to="/dashboard/products"

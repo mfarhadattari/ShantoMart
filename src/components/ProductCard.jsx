@@ -3,18 +3,18 @@ import AddToCartBtn from "./AddToCartBtn";
 
 const ProductCard = ({ productInfo }) => {
   const { name, price, discount, image, _id } = productInfo;
-  const discountPrice = price - (price * discount) / 100;
+  const discountPrice = Math.round(price - (price * discount) / 100);
 
   return (
-    <div className="card w-full rounded-none h-[500px] flex flex-col justify-between">
+    <div className="card w-full rounded-none flex flex-col justify-between mt-5">
       <Link to={`/products/${_id}`}>
         <figure>
-          <img className="w-full h-[300px]" src={image} alt={name} />
+          <img className="w-[200px] h-[150px]" src={image} alt={name} />
         </figure>
         <div className="card-body text-center pb-2">
           <h2 className="card-title w-fit mx-auto">{name}</h2>
-          <p className="text-2xl flex gap-3 justify-center">
-            <span className={discount > 0 ? "line-through text-red-500" : ""}>
+          <p className="text-xl flex gap-3 justify-center">
+            <span className={discount > 0 ? "line-through text-red-500" : "text-blue-700"}>
               {price}&#2547;
             </span>
             {discount > 0 && (

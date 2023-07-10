@@ -28,7 +28,7 @@ const ProductDetailsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-5">
               <div>
                 <img
-                  className="h-[500px] w-full"
+                  className="w-full"
                   src={product?.image}
                   alt={product?.name}
                 />
@@ -51,10 +51,12 @@ const ProductDetailsPage = () => {
                   >
                     {product?.price}&#2547;
                   </span>
-                  {product?.discount && (
+                  {product?.discount > 0 && (
                     <span className="text-blue-700">
-                      {product?.price -
-                        (product?.price * product?.discount) / 100}
+                      {Math.round(
+                        product?.price -
+                          (product?.price * product?.discount) / 100
+                      )}
                       &#2547;
                     </span>
                   )}

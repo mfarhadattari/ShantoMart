@@ -45,7 +45,7 @@ const AddCustomer = () => {
               <input
                 type="text"
                 placeholder="Name"
-                className="input input-bordered rounded-none"
+                className="input-field"
                 {...register("name", { required: true })}
               />
               {errors.name?.type == "required" && (
@@ -53,11 +53,11 @@ const AddCustomer = () => {
               )}
             </div>
             <div className="form-control">
-              <div className="relative">
+              <div className="relative border border-gray-500">
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="input input-bordered rounded-none ps-28 w-full"
+                  className="input input-bordered rounded-none  ps-28 w-full"
                   {...register("phoneNumber", {
                     required: true,
                     pattern: /^\d+$/,
@@ -84,7 +84,7 @@ const AddCustomer = () => {
               <input
                 type="url"
                 placeholder="PhotoURL"
-                className="input input-bordered rounded-none"
+                className="input-field"
                 {...register("photoURL", { required: true })}
               />
               {errors.photoURL?.type == "required" && (

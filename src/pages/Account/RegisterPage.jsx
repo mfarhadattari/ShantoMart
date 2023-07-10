@@ -56,7 +56,7 @@ const RegistrationPage = () => {
                 <input
                   type="text"
                   placeholder="Name"
-                  className="input input-bordered border-gray-500 rounded-none w-full "
+                  className="input-field"
                   {...register("displayName", { required: true })}
                 />
                 {errors.displayName?.type === "required" && (
@@ -103,7 +103,7 @@ const RegistrationPage = () => {
                 </label>
                 <input
                   type="url"
-                  className="input input-bordered border-gray-500 rounded-none"
+                  className="input-field"
                   placeholder="Photo URL"
                   {...register("photoURL", { required: true })}
                 />
@@ -120,7 +120,7 @@ const RegistrationPage = () => {
                     type={passwordShow ? "text" : "password"}
                     placeholder="Password"
                     name="password"
-                    className="input input-bordered border-gray-500  rounded-none w-full"
+                    className="input-field"
                     {...register("password", {
                       required: true,
                       minLength: 8,

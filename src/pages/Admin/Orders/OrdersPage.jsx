@@ -87,7 +87,7 @@ const OrdersPage = () => {
                         <p>TransID: {order.transactionID}</p>
                         <p>Method: {order.paymentBy}</p>
                         <p>Date: {order.paymentTime?.split(":")[0]}</p>
-                        <p>Time: {order.paymentTime?.split(":")[1]}</p>
+                        <p>Time: {order.paymentTime?.split(":")[1].split("-").join(":")}</p>
                       </div>
                     </td>
                     <th>

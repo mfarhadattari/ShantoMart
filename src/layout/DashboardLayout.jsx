@@ -34,7 +34,7 @@ const options = [
 const DashboardLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col max-w-7xl">
       <NavigationBar></NavigationBar>
       <div className="h-full w-full flex">
         <div className="w-1/4 hidden lg:block">
@@ -48,8 +48,8 @@ const DashboardLayout = () => {
         </div>
         <div className="w-full lg:w-3/4 relative">
           <ul
-            className={`menu bg-white lg:hidden w-[200px] absolute z-40 ${
-              isOpen ? "top-0 right-0" : "hidden"
+            className={`menu bg-white fixed lg:hidden w-[200px]  z-40 ${
+              isOpen ? "top-20 right-0" : "hidden"
             }`}
           >
             {options.map((option) => (
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
           </ul>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden absolute top-5 right-5 text-3xl btn btn-circle z-50"
+            className="lg:hidden fixed top-20 right-3 text-3xl btn btn-circle z-50"
           >
             <span className="animate-spin">
               {isOpen ? <FaXmark></FaXmark> : <FaGear></FaGear>}

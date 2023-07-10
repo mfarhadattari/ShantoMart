@@ -3,7 +3,7 @@ import SectionHeading from "./../../../components/SectionHeading";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { toast } from "react-hot-toast";
-import moment from 'moment/moment'
+import moment from "moment/moment";
 
 const categories = [
   "Sneakers",
@@ -43,7 +43,7 @@ const AddProduct = () => {
       .then((imgResponse) => {
         if (imgResponse.success) {
           const imageURL = imgResponse.data.display_url;
-          const timeDate = moment().format("YYYY-MM-DD:HH-mm-ss")
+          const timeDate = moment().format("YYYY-MM-DD:HH-mm-ss");
           const {
             name,
             category,
@@ -62,12 +62,12 @@ const AddProduct = () => {
             discount: parseInt(discount),
             stock: parseInt(stock),
             description,
-            timeDate
+            timeDate,
           };
           axiosPublic.post("/admin/add-product", product).then(({ data }) => {
             if (data.insertedId) {
               toast("Successfully Added!");
-              reset()
+              reset();
             }
           });
         }
@@ -78,7 +78,7 @@ const AddProduct = () => {
     <main>
       <SectionHeading heading="Add Product" subheading="Add New Product!" />
       <section>
-        <div className="card rounded-none w-4/5 mx-auto">
+        <div className="card rounded-none md:w-4/5 mx-auto">
           <form
             className="card-body space-y-2"
             onSubmit={handleSubmit(onSubmit)}
@@ -91,7 +91,7 @@ const AddProduct = () => {
               <input
                 type="text"
                 placeholder="Product name"
-                className="input input-bordered rounded-none "
+                className="input-field"
                 {...register("name", { required: true })}
               />
               {errors.name && <p className="errorText">Name is required</p>}
@@ -103,7 +103,7 @@ const AddProduct = () => {
                   <span className="label-text">Category*</span>
                 </label>
                 <select
-                  className="select select-bordered rounded-none w-full"
+                  className="select-field"
                   {...register("category", { required: true })}
                 >
                   {categories.map((category, idx) => (
@@ -122,7 +122,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   placeholder="Seller"
-                  className="input input-bordered rounded-none"
+                  className="input-field"
                   {...register("seller", { required: true })}
                 />
                 {errors.seller && (
@@ -136,13 +136,18 @@ const AddProduct = () => {
                 <label className="label">
                   <span className="label-text">Price*</span>
                 </label>
-                <input
-                  type="number"
-                  placeholder="Price"
-                  min={0}
-                  className="input input-bordered rounded-none"
-                  {...register("price", { required: true })}
-                />
+                <div className="relative border border-gray-500">
+                  <input
+                    type="number"
+                    placeholder="Price"
+                    min={0}
+                    className="input rounded-none w-full"
+                    {...register("price", { required: true })}
+                  />
+                  <p className="absolute flex items-center h-full w-fit text-md top-0 right-0 px-3 bg-white">
+                    &#2547;
+                  </p>
+                </div>
                 {errors.price && <p className="errorText">Price is required</p>}
               </div>
               {/* ------ Product Discount------- */}
@@ -150,13 +155,19 @@ const AddProduct = () => {
                 <label className="label">
                   <span className="label-text">Discount*</span>
                 </label>
-                <input
-                  type="number"
-                  placeholder="Discount"
-                  min={0}
-                  className="input input-bordered rounded-none"
-                  {...register("discount", { required: true })}
-                />
+                <div className="relative border border-gray-500">
+                  <input
+                    type="number"
+                    placeholder="Discount"
+                    min={0}
+                    className="input rounded-none w-full"
+                    {...register("discount", { required: true })}
+                  />
+                  <p className="absolute flex items-center h-full w-fit text-md top-0 right-0 px-3 bg-white">
+                    %
+                  </p>
+                </div>
+
                 {errors.discount && (
                   <p className="errorText">Discount is required</p>
                 )}
@@ -168,13 +179,18 @@ const AddProduct = () => {
                 <label className="label">
                   <span className="label-text">Stock*</span>
                 </label>
-                <input
-                  type="number"
-                  placeholder="Stock"
-                  min={0}
-                  className="input input-bordered rounded-none"
-                  {...register("stock", { required: true })}
-                />
+                <div className="relative border border-gray-500">
+                  <input
+                    type="number"
+                    placeholder="Stock"
+                    min={0}
+                    className="input rounded-none w-full"
+                    {...register("stock", { required: true })}
+                  />
+                  <p className="absolute flex items-center h-full w-fit text-md top-0 right-0 px-3 bg-white">
+                    Pes
+                  </p>
+                </div>
                 {errors.stock && <p className="errorText">Stock is required</p>}
               </div>
               {/* ------ Product Image------- */}
@@ -184,7 +200,7 @@ const AddProduct = () => {
                 </label>
                 <input
                   type="file"
-                  className="file-input w-full rounded-none bg-gray-200"
+                  className="file-input w-full border-gray-500 rounded-none bg-gray-200"
                   {...register("image", { required: true })}
                 />
                 {errors.image && <p className="errorText">Image is required</p>}
@@ -196,7 +212,7 @@ const AddProduct = () => {
                 <span className="label-text">Products Description*</span>
               </label>
               <textarea
-                className="textarea textarea-bordered rounded-none"
+                className="textarea-field"
                 rows={4}
                 placeholder="Products Description"
                 {...register("description", { required: true })}

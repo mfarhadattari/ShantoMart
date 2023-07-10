@@ -48,7 +48,7 @@ const OrdersDetails = () => {
   };
 
   return (
-    <main className="lg:px-20">
+    <main className="p-5 lg:px-20">
       <SectionHeading heading="Order Details" subheading="Review Order" />
       {isLoading || !order ? (
         <div>
@@ -57,7 +57,7 @@ const OrdersDetails = () => {
       ) : (
         <>
           <section className="my-5">
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row gap-5 justify-between">
               <div>
                 <h1 className="text-xl font-semibold">Customer: {userName}</h1>
                 <p>Contract: {userPhone}</p>

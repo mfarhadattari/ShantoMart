@@ -25,7 +25,7 @@ const NewProducts = () => {
           <Loaders />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-5 p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 gap-5 p-10">
           {newProducts.map((product) => (
             <ProductCard key={product._id} productInfo={product} />
           ))}

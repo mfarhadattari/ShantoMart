@@ -90,17 +90,36 @@ const UpdateProduct = () => {
           <Loaders></Loaders>
         </div>
       ) : (
-        <section className="my-10">
+        <section className="my-10 p-5 md:p-10">
           <form onSubmit={handleSubmit(handelUpdate)}>
-            <div className="grid grid-col lg:grid-cols-3 gap-5">
+            <div className="grid grid-col md:grid-cols-2 md:items-end lg:items-start lg:grid-cols-3 gap-5">
               <div>
-                <label className="label">
-                  <span className="label-text">Product Image*</span>
-                </label>
-                <img src={imageURL || product.image} />
+                <div>
+                  <label className="label">
+                    <span className="label-text">Product Image*</span>
+                  </label>
+                  <img src={imageURL || product.image} />
+                </div>
+                {/* ------------------ Product Description for Medium Device ---------------- */}
+                <div className="form-control w-full mt-5 hidden md:flex lg:hidden">
+                  <label className="label">
+                    <span className="label-text">Products Description*</span>
+                  </label>
+                  <textarea
+                    className="textarea-field"
+                    rows={4}
+                    placeholder="Products Description"
+                    defaultValue={product.description}
+                    {...register("description", { required: true })}
+                  ></textarea>
+                  {errors?.description && (
+                    <p className="errorText">Description is required</p>
+                  )}
+                </div>
               </div>
-              <div className="col-span-2">
+              <div className="lg:col-span-2">
                 <div className="space-y-2">
+                  {/* ------------------ Product Name ---------------- */}
                   <div className="form-control w-full">
                     <label className="label">
                       <span className="label-text">Product Name*</span>
@@ -109,7 +128,7 @@ const UpdateProduct = () => {
                       type="text"
                       defaultValue={product.name}
                       placeholder="Product name"
-                      className="input input-bordered rounded-none "
+                      className="input-field"
                       {...register("name", { required: true })}
                     />
                     {errors?.name && (
@@ -117,12 +136,13 @@ const UpdateProduct = () => {
                     )}
                   </div>
                   <div className="flex flex-col md:flex-row gap-5">
+                    {/* ------------------ Product Category ---------------- */}
                     <div className="form-control w-full">
                       <label className="label">
                         <span className="label-text">Category*</span>
                       </label>
                       <select
-                        className="select select-bordered rounded-none w-full max-w-xs"
+                        className="select-field"
                         defaultValue={product.category}
                         {...register("category", { required: true })}
                       >
@@ -135,6 +155,7 @@ const UpdateProduct = () => {
                         <p className="errorText">Category is required</p>
                       )}
                     </div>
+                    {/* ------------------ Product Seller ---------------- */}
                     <div className="form-control w-full">
                       <label className="label">
                         <span className="label-text">Seller*</span>
@@ -143,7 +164,7 @@ const UpdateProduct = () => {
                         type="text"
                         placeholder="Seller"
                         defaultValue={product.seller}
-                        className="input input-bordered rounded-none"
+                        className="input-field"
                         {...register("seller", { required: true })}
                       />
                       {errors?.seller && (
@@ -152,61 +173,79 @@ const UpdateProduct = () => {
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row gap-5">
+                    {/* ------------------ Product Price ---------------- */}
                     <div className="form-control w-full">
                       <label className="label">
                         <span className="label-text">Price*</span>
                       </label>
-                      <input
-                        type="number"
-                        placeholder="Price"
-                        defaultValue={product.price}
-                        className="input input-bordered rounded-none"
-                        {...register("price", { required: true })}
-                      />
+                      <div className="relative border border-gray-500">
+                        <input
+                          type="number"
+                          placeholder="Price"
+                          defaultValue={product.price}
+                          className="input rounded-none w-full"
+                          {...register("price", { required: true })}
+                        />
+                        <p className="absolute flex items-center h-full w-fit text-md top-0 right-0 px-3 bg-white">
+                          &#2547;
+                        </p>
+                      </div>
                       {errors?.price && (
                         <p className="errorText">Price is required</p>
                       )}
                     </div>
+                    {/* ------------------ Product Discount ---------------- */}
                     <div className="form-control w-full">
                       <label className="label">
                         <span className="label-text">Discount*</span>
                       </label>
-                      <input
-                        type="number"
-                        placeholder="Discount"
-                        defaultValue={product.discount}
-                        className="input input-bordered rounded-none"
-                        {...register("discount", { required: true })}
-                      />
+                      <div className="relative border border-gray-500">
+                        <input
+                          type="number"
+                          placeholder="Discount"
+                          defaultValue={product.discount}
+                          className="input rounded-none w-full"
+                          {...register("discount", { required: true })}
+                        />
+                        <p className="absolute flex items-center h-full w-fit text-md top-0 right-0 px-3 bg-white">
+                          %
+                        </p>
+                      </div>
                       {errors?.discount && (
                         <p className="errorText">Discount is required</p>
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col md:flex-row gap-5">
+                  <div className="flex flex-col lg:flex-row gap-5">
+                    {/* ------------------ Product Stock ---------------- */}
                     <div className="form-control w-full">
                       <label className="label">
                         <span className="label-text">Stock*</span>
                       </label>
-                      <input
-                        type="number"
-                        placeholder="Stock"
-                        defaultValue={product.stock}
-                        className="input input-bordered rounded-none"
-                        {...register("stock", { required: true })}
-                      />
+                      <div className="relative border border-gray-500">
+                        <input
+                          type="number"
+                          placeholder="Stock"
+                          defaultValue={product.stock}
+                          className="input rounded-none w-full"
+                          {...register("stock", { required: true })}
+                        />
+                        <p className="absolute flex items-center h-full w-fit text-md top-0 right-0 px-3 bg-white">
+                          Pes
+                        </p>
+                      </div>
                       {errors?.stock && (
                         <p className="errorText">Stock is required</p>
                       )}
                     </div>
-
+                    {/* ------------------ Product Image ---------------- */}
                     <div className="form-control w-full">
                       <label className="label">
                         <span className="label-text">Image URL*</span>
                       </label>
                       <input
                         type="url"
-                        className="input input-bordered rounded-none"
+                        className="input-field"
                         defaultValue={product.image}
                         onBlurCapture={(e) => setImageURL(e.target.value)}
                         {...register("image", { required: true })}
@@ -219,12 +258,13 @@ const UpdateProduct = () => {
                 </div>
               </div>
             </div>
-            <div className="form-control w-full mt-5">
+            {/* ------------------ Product Description from small and large ---------------- */}
+            <div className="form-control w-full mt-5 md:hidden lg:flex">
               <label className="label">
                 <span className="label-text">Products Description*</span>
               </label>
               <textarea
-                className="textarea textarea-bordered rounded-none"
+                className="textarea-field"
                 rows={4}
                 placeholder="Products Description"
                 defaultValue={product.description}

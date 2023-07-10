@@ -8,7 +8,7 @@ import { useState } from "react";
 import { generateTransitionId } from "../../utils/utils";
 import moment from "moment";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -34,6 +34,10 @@ const CheckoutPage = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const paymentBy = form.paymentBy.value;
+    if (paymentBy === "Payment Method") {
+      return toast("Please Select Payment Method");
+    }
     const totalAmount = form.totalAmount.value;
     const userName = form.userName.value;
     const userPhone = form.userPhone.value;
@@ -55,6 +59,7 @@ const CheckoutPage = () => {
       userPhone,
       totalAmount,
       transactionID,
+      paymentBy,
       paymentTime,
       products,
       status,
@@ -81,7 +86,7 @@ const CheckoutPage = () => {
         <div className="h-[300px] flex justify-center items-center">
           <Loaders />
         </div>
-      ) : (
+      ) : carts.length > 0 ? (
         <section className="my-10">
           <div className="flex mt-5 items-center justify-center">
             {/*--------------------  Checkout Form ----------------------- */}
@@ -98,7 +103,7 @@ const CheckoutPage = () => {
                       name="userName"
                       defaultValue={authUser.displayName}
                       disabled
-                      className="input input-bordered rounded-none"
+                      className="input-field"
                     />
                   </div>
                   <div className="form-control w-full">
@@ -107,7 +112,7 @@ const CheckoutPage = () => {
                       name="userPhone"
                       defaultValue={authUser.phoneNumber}
                       disabled
-                      className="input input-bordered rounded-none"
+                      className="input-field"
                     />
                   </div>
                 </div>
@@ -118,7 +123,7 @@ const CheckoutPage = () => {
                       name="city"
                       placeholder="Your City"
                       required
-                      className="input input-bordered rounded-none"
+                      className="input-field"
                     />
                   </div>
                   <div className="form-control w-full relative">
@@ -130,7 +135,7 @@ const CheckoutPage = () => {
                         0
                       )}
                       disabled
-                      className="input input-bordered rounded-none"
+                      className="input-field"
                     />
                     <p className="h-full absolute top-0 right-0 flex items-center px-5 text-xl">
                       &#2547;
@@ -139,13 +144,19 @@ const CheckoutPage = () => {
                 </div>
                 <div className="flex flex-col md:flex-row w-full gap-2 ">
                   <div className="form-control w-full">
-                    <input
+                    <select
                       type="text"
                       name="paymentBy"
-                      placeholder="Payment By"
                       required
-                      className="input input-bordered rounded-none"
-                    />
+                      defaultValue="Payment Method"
+                      className="select-field"
+                    >
+                      <option disabled>Payment Method</option>
+                      <option value="Card">Card Payment</option>
+                      <option value="Mobile">Mobile Payment</option>
+                      <option value="Bank">Bank Payment</option>
+                      <option value="Online">Online Payment</option>
+                    </select>
                   </div>
                   <div className="form-control w-full relative">
                     <input
@@ -154,7 +165,7 @@ const CheckoutPage = () => {
                       placeholder="Transaction ID"
                       name="transactionID"
                       required
-                      className="input input-bordered rounded-none"
+                      className="input-field"
                     />
                     <button
                       onClick={getTransactionID}
@@ -171,7 +182,7 @@ const CheckoutPage = () => {
                     placeholder="Your Address"
                     rows={2}
                     required
-                    className="textarea textarea-bordered rounded-none"
+                    className="textarea-field"
                   ></textarea>
                 </div>
                 <div className="form-control w-full">
@@ -186,6 +197,8 @@ const CheckoutPage = () => {
             </div>
           </div>
         </section>
+      ) : (
+        <Navigate to="/carts" />
       )}
     </main>
   );
