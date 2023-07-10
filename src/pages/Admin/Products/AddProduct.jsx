@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { toast } from "react-hot-toast";
 import moment from "moment/moment";
+import PageTitle from "../../../components/PageTitle";
 
 const categories = [
   "Sneakers",
@@ -76,6 +77,7 @@ const AddProduct = () => {
 
   return (
     <main>
+      <PageTitle title="Add Product | ShantoMart"/>
       <SectionHeading heading="Add Product" subheading="Add New Product!" />
       <section>
         <div className="card rounded-none md:w-4/5 mx-auto">

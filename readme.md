@@ -24,6 +24,7 @@
 * React Rating
 * React Hot Toast
 * React Hook Form
+* React Helmet Async
 * ImageBB
 * Axios
 

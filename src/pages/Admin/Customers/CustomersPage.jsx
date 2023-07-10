@@ -4,6 +4,7 @@ import Loaders from "../../../components/Loaders";
 import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SectionHeading from "../../../components/SectionHeading";
+import PageTitle from './../../../components/PageTitle';
 
 const CustomersPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -16,6 +17,7 @@ const CustomersPage = () => {
   });
   return (
     <main>
+      <PageTitle title="Customers | ShantoMart"/>
       <SectionHeading heading="Customer" subheading="Who are using this services!"/>
       <section className="my-10  mx-auto">
         {isLoading || !customers ? (

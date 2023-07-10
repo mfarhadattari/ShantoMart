@@ -4,6 +4,7 @@ import Loaders from "../../components/Loaders";
 import { Rating } from "@smastrom/react-rating";
 import AddToCartBtn from "../../components/AddToCartBtn";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import PageTitle from "../../components/PageTitle";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const ProductDetailsPage = () => {
 
   return (
     <main>
+      <PageTitle title="Product Details | ShantoMart"/>
       {isLoading || !product ? (
         <div>
           <Loaders />

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Link, useParams } from "react-router-dom";
 import Loaders from "../../../components/Loaders";
 import SectionHeading from "../../../components/SectionHeading";
+import PageTitle from "../../../components/PageTitle";
 
 const CustomerDetails = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const CustomerDetails = () => {
 
   return (
     <main className="p-5 md:px-10">
+      <PageTitle title="Customer Details | ShantoMart"/>
       <SectionHeading
         heading="Customer Details"
         subheading="See Customer information!"
@@ -103,7 +105,9 @@ const CustomerDetails = () => {
                         <p>Quantity: {item.quantity}</p>
                       </div>
                     </div>
-                    <h2 className="uppercase text-center md:text-left md:w-3/5">{item.name}</h2>
+                    <h2 className="uppercase text-center md:text-left md:w-3/5">
+                      {item.name}
+                    </h2>
                     <div className="hidden md:flex flex-col gap-2">
                       <p>Price: {item.price} &#2547;</p>
                       <p>Quantity: {item.quantity}</p>

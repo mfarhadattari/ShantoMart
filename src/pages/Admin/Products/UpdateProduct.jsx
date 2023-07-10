@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import moment from "moment";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
+import PageTitle from "../../../components/PageTitle";
 
 const categories = [
   "Sneakers",
@@ -81,6 +82,7 @@ const UpdateProduct = () => {
 
   return (
     <main>
+      <PageTitle title="Update Product | ShantoMart"/>
       <SectionHeading
         heading="Update Product"
         subheading="Update Information of product!"

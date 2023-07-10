@@ -4,6 +4,7 @@ import Loaders from "../../../components/Loaders";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import SectionHeading from "../../../components/SectionHeading";
+import PageTitle from "../../../components/PageTitle";
 
 const OrdersPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -34,6 +35,7 @@ const OrdersPage = () => {
 
   return (
     <main>
+      <PageTitle title="Orders | ShantoMart"/>
       <SectionHeading
         heading="User Orders"
         subheading="Review the Orders!"

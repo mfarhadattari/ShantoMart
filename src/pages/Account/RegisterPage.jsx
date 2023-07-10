@@ -4,11 +4,14 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import { toast } from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
+import PageTitle from "../../components/PageTitle";
 
 const RegistrationPage = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const { axiosPublic } = useAxiosPublic();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const {
     register,
@@ -18,6 +21,7 @@ const RegistrationPage = () => {
   } = useForm();
 
   const handelRegister = (data) => {
+    logout();
     const { displayName, phoneNumber, photoURL, password } = data;
     const userInfo = {
       displayName,
@@ -34,15 +38,15 @@ const RegistrationPage = () => {
         toast("Successfully register!!");
         reset();
         return navigate("/login");
-      }
-      else{
-        toast("Something is wrong! Try again!")
+      } else {
+        toast("Something is wrong! Try again!");
       }
     });
   };
 
   return (
     <main>
+      <PageTitle title="Register | ShantoMart" />
       <section>
         <div className="p-5 w-full md:w-2/3 lg:w-1/2 mx-auto">
           <h1 className="text-3xl text-center font-bold">Register now!</h1>

@@ -5,6 +5,7 @@ import Loaders from "../../../components/Loaders";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import SectionHeading from "../../../components/SectionHeading";
+import PageTitle from "../../../components/PageTitle";
 
 const AllProducts = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -31,6 +32,7 @@ const AllProducts = () => {
 
   return (
     <main>
+      <PageTitle title="All Products | ShantoMart"/>
       <SectionHeading
         heading="All Products"
         subheading="Here the all products!"

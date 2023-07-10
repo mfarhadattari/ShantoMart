@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import SectionHeading from "./../../../components/SectionHeading";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { toast } from "react-hot-toast";
+import PageTitle from './../../../components/PageTitle';
 const AddCustomer = () => {
   const { axiosPublic } = useAxiosPublic();
   const {
@@ -34,6 +35,7 @@ const AddCustomer = () => {
 
   return (
     <main>
+      <PageTitle title="Add Customer | ShantoMart"/>
       <SectionHeading
         heading="Add Customer"
         subheading="Give necessary information!"

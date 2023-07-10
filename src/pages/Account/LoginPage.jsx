@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import { toast } from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import PageTitle from "../../components/PageTitle";
 
 const LoginPage = () => {
   const [passwordShow, setPasswordShow] = useState(false);
@@ -35,7 +36,7 @@ const LoginPage = () => {
         setAuthUser(data.user);
         toast("Successfully Login");
         reset();
-        return navigate(redirect, {replace: true});
+        return navigate(redirect, { replace: true });
       }
       if (data.error) {
         return toast(data.message);
@@ -47,6 +48,7 @@ const LoginPage = () => {
 
   return (
     <main>
+      <PageTitle title="Login | ShantoMart" />
       <section>
         <div className="p-5 w-full md:w-2/3 lg:w-2/6 mx-auto">
           <h1 className="text-3xl text-center font-bold">Login now!</h1>

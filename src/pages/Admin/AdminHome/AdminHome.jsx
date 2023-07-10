@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Loaders from "../../../components/Loaders";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import SectionHeading from "../../../components/SectionHeading";
+import PageTitle from './../../../components/PageTitle';
 
 const AdminHome = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -23,6 +24,7 @@ const AdminHome = () => {
   
   return (
     <main>
+      <PageTitle title="Admin Home | ShantoMart"/>
       <SectionHeading
         heading="Admin Home"
         subheading="Overview of Information!"

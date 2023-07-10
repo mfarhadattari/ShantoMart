@@ -9,6 +9,7 @@ import { generateTransitionId } from "../../utils/utils";
 import moment from "moment";
 import { toast } from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router-dom";
+import PageTitle from "../../components/PageTitle";
 
 const CheckoutPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -38,7 +39,7 @@ const CheckoutPage = () => {
     if (paymentBy === "Payment Method") {
       return toast("Please Select Payment Method");
     }
-    const totalAmount = form.totalAmount.value;
+    const totalAmount = parseInt(form.totalAmount.value);
     const userName = form.userName.value;
     const userPhone = form.userPhone.value;
     const city = form.city.value;
@@ -77,6 +78,7 @@ const CheckoutPage = () => {
 
   return (
     <main>
+      <PageTitle title="Checkout | ShantoMart"/>
       <Cover
         heading="Checkout"
         backgroundURL={banner}

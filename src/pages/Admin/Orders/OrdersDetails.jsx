@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import Loaders from "../../../components/Loaders";
 import SectionHeading from "./../../../components/SectionHeading";
 import { toast } from "react-hot-toast";
+import PageTitle from './../../../components/PageTitle';
 
 const OrdersDetails = () => {
   const { id } = useParams();
@@ -48,7 +49,8 @@ const OrdersDetails = () => {
   };
 
   return (
-    <main className="p-5 lg:px-20">
+    <main className="p-5 lg:px-10">
+      <PageTitle title="Order Details | ShantoMart"/>
       <SectionHeading heading="Order Details" subheading="Review Order" />
       {isLoading || !order ? (
         <div>
@@ -96,8 +98,12 @@ const OrdersDetails = () => {
                       <td>
                         <h2 className="uppercase">{product.name}</h2>
                       </td>
-                      <td className="text-lg">{product.price} &#2547;</td>
-                      <td className="text-lg">{product.quantity}pes</td>
+                      <td className="text-lg w-fit">
+                        <div className="w-20">
+                          <p> {product.price} &#2547;</p>
+                          <p>{product.quantity}pes</p>
+                        </div>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

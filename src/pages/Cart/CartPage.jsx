@@ -7,6 +7,7 @@ import Loaders from "../../components/Loaders";
 import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import PageTitle from "../../components/PageTitle";
 
 const CartPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -48,6 +49,7 @@ const CartPage = () => {
 
   return (
     <main>
+      <PageTitle title="Cart | ShantoMart"/>
       <Cover
         heading="Cart"
         backgroundURL={banner}

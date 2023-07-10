@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import Loaders from "../../components/Loaders";
 import ProductCard from "../../components/ProductCard";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import PageTitle from "../../components/PageTitle";
 
 const ProductsPage = () => {
   const { axiosPublic } = useAxiosPublic();
@@ -17,6 +18,7 @@ const ProductsPage = () => {
 
   return (
     <main>
+      <PageTitle title="Products | ShantoMart"/>
       <Cover
         heading="Discover Our Products"
         subheading="Get your favorite products"
