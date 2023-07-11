@@ -25,6 +25,7 @@
 * React Hot Toast
 * React Hook Form
 * React Helmet Async
+* Sweet Alert 2
 * ImageBB
 * Axios
 

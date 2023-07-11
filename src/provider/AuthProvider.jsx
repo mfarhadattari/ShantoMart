@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
-  const { axiosPublic } = useAxiosPublic();
+  const { axiosSecure } = useAxiosSecure();
 
   // ! logged user
   const logout = () => {
@@ -15,17 +15,9 @@ const AuthProvider = ({ children }) => {
     setAuthLoading(false);
   };
 
-
-  // ! Set user
-
   // !Get Logged user
   useEffect(() => {
-    const token = localStorage.getItem("ShantoMartAuthToken");
-    axiosPublic("/user", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(({ data }) => {
+    axiosSecure("/user").then(({ data }) => {
       if (data.user) {
         setAuthUser(data.user);
         setAuthLoading(false);
@@ -34,7 +26,7 @@ const AuthProvider = ({ children }) => {
         setAuthLoading(false);
       }
     });
-  }, [axiosPublic]);
+  }, [axiosSecure]);
 
   const authInfo = { authUser, authLoading, logout, setAuthUser };
   return (

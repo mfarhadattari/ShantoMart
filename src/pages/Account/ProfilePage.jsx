@@ -2,9 +2,14 @@ import PageTitle from "../../components/PageTitle";
 import SectionHeading from "../../components/SectionHeading";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { toast } from "react-hot-toast";
 
 const ProfilePage = () => {
   const { authUser } = useAuth();
+  const { axiosSecure } = useAxiosSecure();
+
   const {
     register,
     handleSubmit,
@@ -12,26 +17,52 @@ const ProfilePage = () => {
   } = useForm();
 
   const handelUpdate = (data) => {
-    const { displayName, phoneNumber, photoURL, location, city } = data;
+    const { displayName, photoURL, location, city } = data;
     const userInfo = {
       displayName,
       photoURL,
-      phoneNumber: `+880${phoneNumber}`,
       location,
       city,
     };
-    console.log(userInfo);
 
-    // axiosPublic.post("/create-account", userInfo).then(({ data }) => {
-    //   if (data.alreadyAccount) {
-    //     return toast("Phone number is already used!");
-    //   }
-    //   if (data.insertedId) {
-    //     toast("Successfully register!!");
-    //   } else {
-    //     toast("Something is wrong! Try again!");
-    //   }
-    // });
+    Swal.fire({
+      title: "Verify It's you",
+      input: "password",
+      inputPlaceholder: "Confirm Password",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        axiosSecure
+          .post("/verify-user", {
+            phoneNumber: authUser.phoneNumber,
+            password: result.value,
+          })
+          .then(({ data }) => {
+            if (data.verified) {
+              axiosSecure
+                .patch("/update-profile", { userInfo })
+                .then(({ data }) => {
+                  if (data.modifiedCount > 0) {
+                    toast.success("Updated Successfully!");
+                  } else {
+                    toast.error("Something is wrong!", {
+                      style: { color: "red" },
+                    });
+                  }
+                });
+            } else {
+              return toast.error(data?.message || "Something is wrong!", {
+                style: { color: "red" },
+              });
+            }
+          });
+      } else {
+        return toast.error("Please Input Password!", {
+          style: { color: "red" },
+        });
+      }
+    });
   };
 
   return (
@@ -75,33 +106,21 @@ const ProfilePage = () => {
                   <label className="label">
                     <span className="label-text">Phone Number*</span>
                   </label>
-                  <div className="relative border border-gray-500">
+                  <div
+                    className="relative border border-gray-500"
+                    title="You can't update phone number!"
+                  >
                     <input
                       type="tel"
                       placeholder="Phone Number"
                       className="input rounded-none ps-28 w-full"
                       defaultValue={authUser.phoneNumber.slice(4)}
-                      {...register("phoneNumber", {
-                        required: true,
-                        pattern: /^\d+$/,
-                        maxLength: 10,
-                        minLength: 10,
-                      })}
+                      disabled
                     />
                     <p className="absolute h-full top-0 flex p-2 items-center bg-base-300">
                       (BD) +880
                     </p>
                   </div>
-                  {errors.phoneNumber?.type == "required" && (
-                    <p className="errorText">Phone number is required</p>
-                  )}
-                  {errors.phoneNumber?.type == "pattern" && (
-                    <p className="errorText">Phone number is must number</p>
-                  )}
-                  {(errors.phoneNumber?.type == "minLength" ||
-                    errors.phoneNumber?.type == "maxLength") && (
-                    <p className="errorText">Phone number must 10 number</p>
-                  )}
                 </div>
               </div>
 
