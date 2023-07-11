@@ -7,13 +7,13 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   useEffect(() => {
-    const token = localStorage.getItem("ShantoMartAuthToken");
-    if (token) {
-      axiosSecure.interceptors.request.use((req) => {
+    axiosSecure.interceptors.request.use((req) => {
+      const token = localStorage.getItem("ShantoMartAuthToken");
+      if (token) {
         req.headers.Authorization = `Bearer ${token}`;
-        return req;
-      });
-    }
+      }
+      return req;
+    });
 
     axiosSecure.interceptors.response.use(
       (res) => res,

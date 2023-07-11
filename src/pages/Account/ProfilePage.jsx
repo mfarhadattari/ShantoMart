@@ -9,7 +9,7 @@ import { FaGear } from "react-icons/fa6";
 import { useState } from "react";
 
 const ProfilePage = () => {
-  const { authUser } = useAuth();
+  const { authUser, logout } = useAuth();
   const { axiosSecure } = useAxiosSecure();
   const [displaySetting, setDisplaySetting] = useState(false);
 
@@ -45,7 +45,7 @@ const ProfilePage = () => {
           .then(({ data }) => {
             if (data.verified) {
               axiosSecure
-                .patch("/update-profile", { userInfo })
+                .patch("/update-profile", { ...userInfo })
                 .then(({ data }) => {
                   if (data.modifiedCount > 0) {
                     toast.success("Updated Successfully!");
@@ -55,6 +55,42 @@ const ProfilePage = () => {
                     });
                   }
                 });
+            } else {
+              return toast.error(data?.message || "Something is wrong!", {
+                style: { color: "red" },
+              });
+            }
+          });
+      } else {
+        return toast.error("Please Input Password!", {
+          style: { color: "red" },
+        });
+      }
+    });
+  };
+
+  // !Delete User
+  const handelDeleteAccount = () => {
+    Swal.fire({
+      title: "Are You Sure!",
+      input: "password",
+      inputPlaceholder: "Confirm Password",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        axiosSecure
+          .post("/verify-user", {
+            phoneNumber: authUser.phoneNumber,
+            password: result.value,
+          })
+          .then(({ data }) => {
+            if (data.verified) {
+              axiosSecure.delete("/delete-user").then(({ data }) => {
+                if (data.deletedCount > 0) {
+                  logout();
+                }
+              });
             } else {
               return toast.error(data?.message || "Something is wrong!", {
                 style: { color: "red" },
@@ -104,7 +140,10 @@ const ProfilePage = () => {
                 <button className="btn btn-sm btn-ghost text-green-700 rounded-none">
                   Change Password
                 </button>
-                <button className="btn btn-sm btn-ghost text-red-500 rounded-none">
+                <button
+                  className="btn btn-sm btn-ghost text-red-500 rounded-none"
+                  onClick={handelDeleteAccount}
+                >
                   Delete Account
                 </button>
               </div>
