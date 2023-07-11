@@ -98,10 +98,6 @@ const LoginPage = () => {
                   className="input-field"
                   {...register("password", {
                     required: true,
-                    minLength: 8,
-                    maxLength: 20,
-                    pattern:
-                      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
                   })}
                 />
                 <button
@@ -114,18 +110,6 @@ const LoginPage = () => {
               </div>
               {errors.password?.type === "required" && (
                 <p className="errorText">Password is Required</p>
-              )}
-              {errors.password?.type === "minLength" && (
-                <p className="errorText">Password must be 8 character</p>
-              )}
-              {errors.password?.type === "maxLength" && (
-                <p className="errorText">Password less then 20 character</p>
-              )}
-              {errors.password?.type === "pattern" && (
-                <p className="errorText">
-                  Minimum one uppercase, one lowercase, one number and one
-                  special character
-                </p>
               )}
             </div>
             <div className="form-control w-full mt-3">

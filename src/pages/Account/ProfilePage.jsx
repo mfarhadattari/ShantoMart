@@ -191,7 +191,7 @@ const ProfilePage = () => {
                 } md:flex flex-col items-start mt-2`}
               >
                 <button className="btn btn-sm btn-ghost text-blue-500 rounded-none">
-                  Update Phone Number
+                  Change Phone Number
                 </button>
                 <button
                   className="btn btn-sm btn-ghost text-green-700 rounded-none"

@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
+  // baseURL: "http://localhost:3000",
+  baseURL: "https://shanto-mart-server.vercel.app",
 });
 
 const useAxiosSecure = () => {
