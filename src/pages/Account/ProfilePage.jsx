@@ -61,7 +61,8 @@ const ProfilePage = () => {
               });
             }
           });
-      } else {
+      }
+      if (result.isConfirmed && !result.value) {
         return toast.error("Please Input Password!", {
           style: { color: "red" },
         });
@@ -97,7 +98,62 @@ const ProfilePage = () => {
               });
             }
           });
-      } else {
+      }
+      if (result.isConfirmed && !result.value) {
+        return toast.error("Please Input Password!", {
+          style: { color: "red" },
+        });
+      }
+    });
+  };
+
+  // !Change Password
+  const handelChangePassword = () => {
+    Swal.fire({
+      title: "Change Password!",
+      html:
+        '<input id="confirm-old-password" required type="password" placeholder="Confirm old password" class="swal2-input">' +
+        '<input id="new-password" required type="password"  placeholder="New password" class="swal2-input">',
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+      preConfirm: () => {
+        const inputs = {
+          password: document.getElementById("confirm-old-password").value,
+          newPassword: document.getElementById("new-password").value,
+        };
+        return inputs;
+      },
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        axiosSecure
+          .post("/verify-user", {
+            phoneNumber: authUser.phoneNumber,
+            password: result.value.password,
+          })
+          .then(({ data }) => {
+            if (data.verified) {
+              axiosSecure
+                .patch("/change-password", {
+                  phoneNumber: authUser.phoneNumber,
+                  newPassword: result.value.newPassword,
+                })
+                .then(({ data }) => {
+                  if (data.modifiedCount > 0) {
+                    toast.success("Password Changed!");
+                  } else {
+                    return toast.error("Something is wrong!", {
+                      style: { color: "red" },
+                    });
+                  }
+                });
+            } else {
+              return toast.error(data?.message || "Something is wrong!", {
+                style: { color: "red" },
+              });
+            }
+          });
+      }
+      if (result.isConfirmed && !result.value) {
         return toast.error("Please Input Password!", {
           style: { color: "red" },
         });
@@ -137,7 +193,10 @@ const ProfilePage = () => {
                 <button className="btn btn-sm btn-ghost text-blue-500 rounded-none">
                   Update Phone Number
                 </button>
-                <button className="btn btn-sm btn-ghost text-green-700 rounded-none">
+                <button
+                  className="btn btn-sm btn-ghost text-green-700 rounded-none"
+                  onClick={handelChangePassword}
+                >
                   Change Password
                 </button>
                 <button
