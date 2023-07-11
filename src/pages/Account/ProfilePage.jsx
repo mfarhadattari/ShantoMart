@@ -5,10 +5,13 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
+import { FaGear } from "react-icons/fa6";
+import { useState } from "react";
 
 const ProfilePage = () => {
   const { authUser } = useAuth();
   const { axiosSecure } = useAxiosSecure();
+  const [displaySetting, setDisplaySetting] = useState(false);
 
   const {
     register,
@@ -16,6 +19,7 @@ const ProfilePage = () => {
     formState: { errors },
   } = useForm();
 
+  // !UPDATE USER INFO
   const handelUpdate = (data) => {
     const { displayName, photoURL, location, city } = data;
     const userInfo = {
@@ -74,11 +78,35 @@ const ProfilePage = () => {
       />
       <section className="mx-auto">
         <h1 className="text-3xl text-center font-bold"></h1>
-        <div className="flex flex-col lg:flex-row p-5 gap-5 my-5">
-          <div className="w-full flex flex-col items-center">
+        <div className="flex flex-col lg:flex-row items-center p-5 gap-5 my-5">
+          <div className="w-full flex flex-col items-center md:flex-row lg:flex-row-reverse justify-evenly md:items-start">
             <div className="avatar">
               <div className="w-60 rounded">
                 <img src={authUser.photoURL} alt={authUser.displayName} />
+              </div>
+            </div>
+            <div className="mt-5">
+              <h1
+                className="flex items-center text-xl font-bold gap-3"
+                onClick={() => setDisplaySetting((pre) => !pre)}
+              >
+                <FaGear />
+                User Setting
+              </h1>
+              <div
+                className={`${
+                  displaySetting ? "flex" : "hidden"
+                } md:flex flex-col items-start mt-2`}
+              >
+                <button className="btn btn-sm btn-ghost text-blue-500 rounded-none">
+                  Update Phone Number
+                </button>
+                <button className="btn btn-sm btn-ghost text-green-700 rounded-none">
+                  Change Password
+                </button>
+                <button className="btn btn-sm btn-ghost text-red-500 rounded-none">
+                  Delete Account
+                </button>
               </div>
             </div>
           </div>
