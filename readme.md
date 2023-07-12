@@ -4,6 +4,7 @@
 # Fetured
 * Admin Data Management System
 * Backend Authentication System
+* Secure Password Using bcrypt
 * Cart & Order Management System
 
 # URL
